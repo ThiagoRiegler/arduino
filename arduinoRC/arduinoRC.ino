@@ -26,12 +26,14 @@ void loop() {
   ch3 = pulseIn(chC, HIGH);
   ch4 = pulseIn(chD, HIGH);
   
-  Serial.print(ch1);
-  Serial.print(",");
-  Serial.print(ch2);
-  Serial.print(",");
-  Serial.print(ch3);
-  Serial.print(",");
-  Serial.println(ch4);
+  if(ch2 > 1500){
+    Serial.print("adelante: ");Serial.print(map(ch2, 1500, 1990, 60, 255));Serial.print(" (");Serial.print(ch2);Serial.println(")");
+  }else if(ch2 < 1450){
+    Serial.print("atras: ");Serial.print(map(ch2, 990, 1450, 255, 60));Serial.print(" (");Serial.print(ch2);Serial.println(")");
+  }else if(ch4 > 1500){
+    Serial.print("derecha: ");Serial.print(map(ch4, 1500, 1990, 60, 255));Serial.print(" (");Serial.print(ch4);Serial.println(")");
+  }else if(ch4 < 1450){
+    Serial.print("izquierda: ");Serial.print(map(ch4, 990, 1450, 255, 60));Serial.print(" (");Serial.print(ch4);Serial.println(")");
+  }
 
 }
