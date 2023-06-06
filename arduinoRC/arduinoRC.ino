@@ -38,7 +38,9 @@ void loop() {
     digitalWrite(motorIzq2, HIGH);
     analogWrite(velIzq, map(ch1, 990, 1450, 255, 60));
     digitalWrite(motorIzq1, 0);
-  }else if(ch2 > 1500){
+  }
+  
+  if(ch2 > 1500){
     digitalWrite(motorDer1, HIGH);
     analogWrite(velDer, map(ch2, 1500, 1990, 60, 255));
     digitalWrite(motorDer2, 0);
@@ -46,11 +48,21 @@ void loop() {
     digitalWrite(motorDer2, HIGH);
     analogWrite(velDer, map(ch2, 990, 1450, 255, 60));
     digitalWrite(motorDer1, 0);
-  }else{
+  }
+  
+  if(ch1>1450 && ch1<1500 && ch2>1450 && ch2<1500){
       digitalWrite(motorDer1, 0);
       digitalWrite(motorDer2, 0);
       digitalWrite(motorIzq1, 0);
       digitalWrite(motorIzq2, 0);
   }
+
+  Serial.print(map(ch1, 1500, 1990, 150, 255));
+  Serial.print(" | ");
+  Serial.println(map(ch1, 990, 1450, 255, 150));
+  
+  Serial.print(map(ch2, 1500, 1990, 150, 255));
+  Serial.print(" | ");
+  Serial.println(map(ch2, 990, 1450, 255, 150));
 
 }
